@@ -1,10 +1,12 @@
 from keras.layers.core import Dense, Lambda
-from keras.layers import (Input, Dropout, BatchNormalization, Activation)
+from keras.layers import (Input, Dropout, BatchNormalization,
+                          Activation)
 from keras import backend as K
 from keras.models import Model
 from keras.losses import mean_squared_error
 import numpy as np
 from keras import metrics
+
 from encoder import Encoder
 
 
@@ -95,8 +97,8 @@ class VAE(Encoder):
 
         z = Lambda(sampling, output_shape=(latent_dim,),
                    name='z')([z_mean, z_log_var])
-            """Converting distribution into layer
-            """
+        """Converting distribution into layer
+        """
         x = z
         intermediate_dims.reverse()
         for dim in intermediate_dims:
